@@ -23,7 +23,7 @@ export function createUseCases (useCases: UseCaseMap, server: FastifyInstance) {
         } 
   
         try {
-          const returnHTTP = await useCaseExecute({ body: request.body })
+          const returnHTTP = await useCaseExecute({ body: request.body, params: request.params })
           return reply
             .status(returnHTTP.code)
             .send(returnHTTP.response)
