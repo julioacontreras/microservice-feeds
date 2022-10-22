@@ -1,12 +1,20 @@
 import { logger } from '@/adapters/logger'
 import { HTTPReturn } from '@/adapters/serverHTTP/types'
 import { statusHTTP } from '@/adapters/serverHTTP'
-
+import { DailyFeeds } from '@/domains/DailyFeeds'
 import { useRespository } from '@/repositories/feedRepository'
 
 import { RESPONSE_INTERNAL_SERVER_ERROR } from './responses'
+import { Feed } from '@/domains/Feed'
 
-export const getFeeds = async (): Promise<HTTPReturn> => {  
+type Response = {
+  query: {
+    max: number
+  }
+}
+
+export const getFeeds = async (data: unknown): Promise<HTTPReturn> => {
+  const response = data as Response  
   const feedRepository = useRespository()
   const start = new Date()
   start.setHours(0,0,0,0)  
@@ -15,14 +23,21 @@ export const getFeeds = async (): Promise<HTTPReturn> => {
 
   try {
 
-    const feeds = await feedRepository.find({
+    const dailyFeedsCollection = (await feedRepository.find({
       createdAt:{
         $gte: start,
         $lt: end
       }       
+    })) as unknown as [DailyFeeds]
+
+    const max = response.query?.max || 5
+    const result = dailyFeedsCollection.map(dailyFeeds => {
+      dailyFeeds.feeds = dailyFeeds.feeds.slice(0, max) as [Feed]  
+      return dailyFeeds
     })
+
     return {
-      response: feeds,
+      response: result,
       code: statusHTTP.OK
     } as HTTPReturn
 
