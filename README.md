@@ -52,3 +52,6 @@ POST /api/daily-feeds/import
 GET /api/daily-feeds?max=5
 ```
 
+## Architecture
+
+![Architecture](/docs/architecture.png)
