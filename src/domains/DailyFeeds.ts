@@ -2,7 +2,7 @@ import { Feed } from './Feed'
 import { Channel } from './Channel'
 
 export type DailyFeeds = {
-    createdAt: number
+    createdAt: unknown
     channel: Channel
     feeds: [Feed]
 }

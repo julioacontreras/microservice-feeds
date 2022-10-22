@@ -16,7 +16,10 @@ export const createFeed = async (data: unknown): Promise<HTTPReturn> => {
   const feedRepository = useRespository()
 
   try {
+
     const feed = response.body
+    feed.createdAt = new Date(feed.createdAt as string)
+    
     const isSuccessful = await feedRepository.create(feed)
     return {
       response: {},
