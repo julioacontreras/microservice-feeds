@@ -2,3 +2,7 @@
 /dist
 
 .env
+
+api.http
+kill-app.sh
+notes.txt

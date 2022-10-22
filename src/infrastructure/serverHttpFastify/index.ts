@@ -1,0 +1,30 @@
+import { setServerHTTP } from '@/adapters/serverHTTP'
+import { UseCaseMap, UseCaseRoute, UseCaseName } from '@/adapters/serverHTTP/types'
+import { ServerHTTP } from '@/adapters/serverHTTP/ServerHTTP'
+
+import { useServer, createServer } from './fastify'
+
+function useServerHTTP (): ServerHTTP {
+  const useCases:UseCaseMap = new Map<UseCaseName, UseCaseRoute>()
+
+  function add (useCaseName: UseCaseName, settings: UseCaseRoute) {
+    useCases.set(useCaseName, settings) 
+  }
+    
+  function run () {
+    useServer(useCases)
+  }
+   
+  function createSrv (): unknown {
+    return createServer(useCases)
+  }
+
+  return {
+    useCases,
+    add,
+    run,
+    createSrv
+  }
+}
+
+setServerHTTP(useServerHTTP())
