@@ -1,11 +1,13 @@
 import { setLogger } from '@/adapters/logger'
 
 const logger = {
-  info (message: string) {
+  info (message: string): string {
     console.info(message)
+    return message
   },
-  error (message: string) {
+  error (message: string): string {
     console.error(`%c 💩 ${message}`, 'color: red')
+    return message
   }
 }
 

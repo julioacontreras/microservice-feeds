@@ -12,7 +12,8 @@
     "dev": "npx nodemon --config nodemon.json --quiet --exec \"npm run build:dev\"",
     "lint": "eslint --ignore-path .gitignore ./src --ext .ts",
     "lint:fix": "npm run lint -- --fix",
-    "test:unit": "jest",
+    "test": "jest",
+    "test:watch": "jest --watch",
     "doc": "apidoc -i src -o documentation",
     "doc:view": "npx http-server ./documentation"
   },

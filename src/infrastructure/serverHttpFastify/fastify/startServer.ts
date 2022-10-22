@@ -1,11 +1,11 @@
-import fastify from 'fastify'
+import fastify, { FastifyInstance } from 'fastify'
 
 import { UseCaseMap } from '@/adapters/serverHTTP/types'
 import { logger } from '@/adapters/logger'
 
 import { createUseCases } from './createUseCases'
 
-export function startServer (useCases: UseCaseMap): void {
+export function createServer (useCases: UseCaseMap) {
   const server = fastify()
 
   // -------------------------
@@ -19,6 +19,11 @@ export function startServer (useCases: UseCaseMap): void {
   //   add use cases from application
   // -------------------------
   createUseCases(useCases, server)
+  return server
+}
+
+export function startServer (serverObj: unknown): unknown {
+  const server = serverObj as FastifyInstance
 
   // -------------------------
   //   start server
@@ -34,4 +39,10 @@ export function startServer (useCases: UseCaseMap): void {
     }
     console.info(`Server listening at ${address}`)
   })
+  return server
+}
+
+export function useServer (useCases: UseCaseMap) {
+  const server = createServer(useCases) 
+  startServer(server) 
 }

@@ -1,4 +1,4 @@
 
-import { startServer } from './startServer'
+import { useServer, createServer } from './startServer'
 
-export default startServer
+export { useServer, createServer }
