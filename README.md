@@ -31,13 +31,24 @@ $ npm run start
 # Create feed
 POST /api/daily-feeds
 
+## body
+{
+    "createdAt": "2022-10-22T06:04:24.649+00:00",
+    "channel": {
+        "title": "blah",
+        "slug": "blah",
+        "link": "http://www.google.com"
+    },
+    "feeds": []
+}
+
 # Delete feed
-POST /api/daily-feeds
+POST /api/daily-feeds/:id
 
 # Import feeds from extenal web pages
 POST /api/daily-feeds/import
 
 # Get daily feeds
-GET /daily-feeds
+GET /api/daily-feeds?max=5
 ```
 

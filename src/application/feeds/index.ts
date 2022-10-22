@@ -14,25 +14,25 @@ export function useFeeds () {
   serverHTTP.add('importFeeds', {
     useCase: importFeeds,
     method: POST,
-    route: '/api/feeds/import'
+    route: '/api/daily-feeds/import'
   })
   
   serverHTTP.add('createFeed', {
     useCase: createFeed,
     method: POST,
-    route: '/api/feeds'
+    route: '/api/daily-feeds'
   })
 
   serverHTTP.add('deleteFeed', {
     useCase: deleteFeed,
     method: DELETE,
-    route: '/api/feeds/:id'
+    route: '/api/daily-feeds/:id'
   })
 
   serverHTTP.add('getFeeds', {
     useCase: getFeeds,
     method: GET,
-    route: '/api/feeds'
+    route: '/api/daily-feeds'
   })
   
 }
