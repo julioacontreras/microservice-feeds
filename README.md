@@ -54,4 +54,6 @@ GET /api/daily-feeds?max=5
 
 ## Architecture
 
+Hexagonal architecture formed by infrastructure, application and domain.
+
 ![Architecture](/docs/architecture.png)
