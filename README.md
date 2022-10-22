@@ -1,8 +1,25 @@
-# Microsevice Daily Trends
+# Microsevice Daily Trends 🌐
 
-Microservice to web scraping to import feeds from spain.
+Microservice to web scraping to import feeds from Spain.
 
-## API
+## Getting started
+
+```bash
+
+# Install dependencies
+$ npm install
+
+# Start docker database
+$ docker-compose up -D 
+
+# Start in develop mode
+$ npm run dev
+
+# Start in production mode
+$ npm run build
+$ npm run start
+
+```
 
 ```bash
 # Create feed
