@@ -1,5 +1,9 @@
 import { serverHTTP } from '@/adapters/serverHTTP'
 
-export function startApp () {   
+import { useFeeds } from './feeds'
+
+export function startApp () {
+  useFeeds()
+    
   serverHTTP.run()
 }
